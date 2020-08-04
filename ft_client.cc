@@ -50,9 +50,11 @@ class FileTransferClient {
 };
 
 int main(int argc, char **argv) {
+  std::string address = argv[1];
+  address += ":50051";
   FileTransferClient client(grpc::CreateChannel(
-      "localhost:50051", grpc::InsecureChannelCredentials()));
-  std::string filename = argv[1];
+      address, grpc::InsecureChannelCredentials()));
+  std::string filename = "file.txt";
 
   client.ReceiveFile(filename);
 

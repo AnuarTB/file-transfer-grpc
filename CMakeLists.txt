@@ -44,3 +44,11 @@ target_link_libraries(ft_client
     gRPC::grpc++_reflection
     protobuf::libprotobuf
 )
+
+add_executable(tcp_server
+    ${CMAKE_CURRENT_SOURCE_DIR}/tcp_server.cc
+)
+
+add_executable(tcp_client
+    ${CMAKE_CURRENT_SOURCE_DIR}/tcp_client.cc
+)

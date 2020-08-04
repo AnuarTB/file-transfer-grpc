@@ -37,6 +37,7 @@ class FileTransferServiceImpl final : public FileTransfer::Service {
       writer->Write(chunk);  
     }
     fin.close();
+    delete buffer;
     return Status::OK;
   }
 };
