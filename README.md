@@ -54,7 +54,7 @@ hyperfine './ft_client 192.168.1.2'
 
 1MB file transfer (20 runs). 
 
-![1mb benchmark](results/benchmark_10mb.png)
+![1mb benchmark](results/benchmark_1mb.png)
 
 10MB file transfer (20 runs x 2).
 
