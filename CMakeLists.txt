@@ -13,7 +13,7 @@ find_package(Protobuf REQUIRED)
 find_package(GRPC REQUIRED)
 
 set(PROTOS
-    ${CMAKE_CURRENT_SOURCE_DIR}/protos/helloworld.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/protos/filetransfer.proto
 )
 
 set(PROTO_SRC_DIR ${CMAKE_CURRENT_BINARY_DIR}/proto-src)
@@ -24,23 +24,23 @@ protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${PROTO_SRC_DIR} ${PROTOS})
 grpc_generate_cpp(GRPC_SRCS GRPC_HDRS ${PROTO_SRC_DIR} ${PROTOS})
 
 # Building server
-add_executable(greeter_server
-    ${CMAKE_CURRENT_SOURCE_DIR}/greeter_server.cc
+add_executable(ft_server
+    ${CMAKE_CURRENT_SOURCE_DIR}/ft_server.cc
     ${PROTO_SRCS}
     ${GRPC_SRCS}
 )
-target_link_libraries(greeter_server
+target_link_libraries(ft_server
     gRPC::grpc++_reflection
     protobuf::libprotobuf
 )
 
 # Building client
-add_executable(greeter_client
-    ${CMAKE_CURRENT_SOURCE_DIR}/greeter_client.cc
+add_executable(ft_client
+    ${CMAKE_CURRENT_SOURCE_DIR}/ft_client.cc
     ${PROTO_SRCS}
     ${GRPC_SRCS}
 )
-target_link_libraries(greeter_client
+target_link_libraries(ft_client
     gRPC::grpc++_reflection
     protobuf::libprotobuf
 )
