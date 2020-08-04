@@ -52,3 +52,9 @@ add_executable(tcp_server
 add_executable(tcp_client
     ${CMAKE_CURRENT_SOURCE_DIR}/tcp_client.cc
 )
+
+configure_file(
+  ${CMAKE_CURRENT_SOURCE_DIR}/generate.sh
+  ${CMAKE_CURRENT_BINARY_DIR}/generate.sh
+  COPYONLY
+)

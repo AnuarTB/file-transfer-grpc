@@ -33,7 +33,7 @@ class FileTransferClient {
         stub_->ReceiveFile(&context, request));
   
     while (reader->Read(&chunk)) {
-      fout << chunk.content();
+      fout.write(chunk.content().c_str(), chunk.content().length());
     }
     fout.close();
 

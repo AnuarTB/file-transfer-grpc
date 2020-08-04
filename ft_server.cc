@@ -29,11 +29,12 @@ class FileTransferServiceImpl final : public FileTransfer::Service {
       return Status(StatusCode::UNKNOWN, "File doesn't exist.");
     }
     char* buffer = new char[BUFFER_SIZE];
+    int r;
     Chunk chunk;
 
     while(!fin.eof()){
-      fin.read(buffer, BUFFER_SIZE);
-      chunk.set_content(buffer);
+      r = fin.read(buffer, BUFFER_SIZE).gcount();
+      chunk.set_content(std::string(buffer, r));
       writer->Write(chunk);  
     }
     fin.close();
