@@ -10,6 +10,7 @@
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::Status;
+using grpc::StatusCode;
 using grpc::ServerWriter;
 using grpc::ServerContext;
 using filetransfer::FileTransfer;
@@ -24,7 +25,9 @@ class FileTransferServiceImpl final : public FileTransfer::Service {
     //std::cout << request->filename() << "\n";
     std::string filename = request->filename();
     std::ifstream fin(filename.c_str(), std::ifstream::binary);
-
+    if(fin.fail()){
+      return Status(StatusCode::UNKNOWN, "File doesn't exist.");
+    }
     char* buffer = new char[BUFFER_SIZE];
     Chunk chunk;
 
@@ -33,6 +36,7 @@ class FileTransferServiceImpl final : public FileTransfer::Service {
       chunk.set_content(buffer);
       writer->Write(chunk);  
     }
+    fin.close();
     return Status::OK;
   }
 };

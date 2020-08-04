@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <memory>
 #include <string>
 
@@ -26,29 +27,33 @@ class FileTransferClient {
 
     request.set_filename(filename);
 
+    std::ofstream fout("grpc_output.txt", std::ofstream::binary);
+
     std::unique_ptr<ClientReader<Chunk> > reader(
         stub_->ReceiveFile(&context, request));
-
+  
     while (reader->Read(&chunk)) {
-      std::cout << chunk.content() << std::endl;
+      fout << chunk.content();
     }
+    fout.close();
 
     Status status = reader->Finish();
     if (status.ok()) {
-      std::cout << "Success\n";
+      std::cout << "Success" << std::endl;
     } else {
-      std::cout << "Fail :(\n";
+      std::cout << "Fail :(" << std::endl;
+      std::cout << status.error_message() << std::endl;
     }
   }
  private:
   std::unique_ptr<FileTransfer::Stub> stub_;
 };
 
-int main() {
+int main(int argc, char **argv) {
   FileTransferClient client(grpc::CreateChannel(
       "localhost:50051", grpc::InsecureChannelCredentials()));
-  std::string filename("file.txt");
-  
+  std::string filename = argv[1];
+
   client.ReceiveFile(filename);
 
   return 0;
