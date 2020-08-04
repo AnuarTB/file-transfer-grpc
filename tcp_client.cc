@@ -6,7 +6,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-const int BUFFER_SIZE = 1024;
+const int BUFFER_SIZE = (1 << 15);
 
 int main(int argc, char **argv) {
   int sock = socket(AF_INET, SOCK_STREAM, 0);

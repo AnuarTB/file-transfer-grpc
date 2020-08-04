@@ -6,7 +6,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-const int BUFFER_SIZE = 1024;
+const int BUFFER_SIZE = (1 << 15);
 
 int main() {
   int sock = socket(AF_INET, SOCK_STREAM, 0);
