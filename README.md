@@ -62,6 +62,24 @@ hyperfine './ft_client 192.168.1.2'
 
 > The measurements were made in home wireless network. 
 
+---
+
+10MB GRPC file transfer (10 runs)
+
+![10mb wireshark grpc](results/grpc_statistics_10mb.png)
+
+10MB TCP file transfer (10 runs)
+
+![10mb wireshark tcp](results/tcp_statistics_10mb.png)
+
+50MB GRPC file transfer (10 runs)
+
+![50mb wireshark grpc](results/grpc_statistics_50mb.png)
+
+50MB TCP file transfer (10 runs)
+
+![50mb wireshark tcp](results/tcp_statistics_50mb.png)
+
 ## NOTES
 
 - Most of the values are hardcoded
