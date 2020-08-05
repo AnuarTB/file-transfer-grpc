@@ -54,6 +54,20 @@ hyperfine './ft_client 192.168.1.2'
 
 I have set up capture of packets at the server side and gathered data through `Statistics > Protocol Hierarchy` tab. 
 
+### Chrono
+
+TCP mean - `10.48366`
+
+gRPC mean - `8.91851`
+
+![](results/chrono_5mb.jpg)
+
+TCP mean - `24.8743`
+
+gRPC mean - `14.09938`
+
+![](results/chrono_10mb.jpg)
+
 ## Preliminary results
 
 1MB file transfer (20 runs). 
