@@ -56,6 +56,8 @@ I have set up capture of packets at the server side and gathered data through `S
 
 ### Chrono
 
+Only network related functions were measured with `std::chrono::steady_clock`.
+
 TCP mean - `10.48366`
 
 gRPC mean - `8.91851`
