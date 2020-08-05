@@ -50,6 +50,10 @@ sh generate.sh
 hyperfine './ft_client 192.168.1.2'
 ```
 
+### Wireshark
+
+I have set up capture of packets at the server side and gathered data through `Statistics > Protocol Hierarchy` tab. 
+
 ## Preliminary results
 
 1MB file transfer (20 runs). 
